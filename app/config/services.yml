@@ -1,0 +1,17 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.search:
+        class:      AppBundle\Service\Search
+        arguments:  ["@solr.client", "AppBundle\\Entity\\Project"]
+
+    app.cors_listener:
+        class:      AppBundle\EventListener\CorsListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
