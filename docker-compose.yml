@@ -10,6 +10,7 @@ services:
       MYSQL_PASSWORD: drupal
     volumes:
       - ./docker-runtime/mariadb:/var/lib/mysql
+      - ./docker-runtime/solr-init.sh:/docker-entrypoint-initdb.d/solr-init.sh
 
   php:
     image: wodby/drupal-php:7.0 # Allowed: 7.0, 5.6.
