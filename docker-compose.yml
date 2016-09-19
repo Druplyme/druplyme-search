@@ -33,11 +33,11 @@ services:
     volumes_from:
       - php
     ports:
-      - "7000:80"
+      - "8080:80"
 
   solr:
     image: solr:5.5-alpine
     volumes:
       - ./docker-runtime/solr:/opt/solr/server/solr/mycores
     ports:
-      - "8003:8983"
+      - "2095:8983"
