@@ -1,6 +1,6 @@
 # Microservice responsible for proxying requests to Solr
 
-> Part of the Druply.me project
+> This service is a part of the Druply.me project. It is a tiny API in front of the Solr.
 
 =============
 
