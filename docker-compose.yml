@@ -31,7 +31,5 @@ services:
       - ./docker-runtime/solr-init.sh:/docker-entrypoint-initdb.d/solr-init.sh
     entrypoint:
       - docker-entrypoint.sh
-      - solr-precreate
-      - projects
     ports:
       - "2095:8983"
