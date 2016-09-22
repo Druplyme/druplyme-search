@@ -15,7 +15,8 @@
 /vendor/
 /web/bundles/
 /web/index.php
-docker-runtime/*/
+docker-runtime/mariadb/
+docker-runtime/mongodb/
 app_dev.php
 npm-debug.log
 composer.lock
