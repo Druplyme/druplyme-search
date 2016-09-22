@@ -27,7 +27,11 @@ services:
   solr:
     image: solr:5.5-alpine
     volumes:
-      - ./docker-runtime/solr/projects:/opt/solr/server/solr/projects
-      - ./docker-runtime/solr/init.sh:/docker-entrypoint-initdb.d/solr-init.sh
+      - ./docker-runtime/solr:/opt/solr/server/solr/mycores
+      - ./docker-runtime/solr-init.sh:/docker-entrypoint-initdb.d/solr-init.sh
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - projects
     ports:
       - "2095:8983"
