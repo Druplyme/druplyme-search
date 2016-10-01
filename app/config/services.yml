@@ -11,8 +11,13 @@ services:
         class:      AppBundle\Service\Search
         arguments:  ["@solr.client", "AppBundle\\Entity\\Project"]
 
+    # XML Encoder
+    app.encoder.xml:
+        class: 'Symfony\Component\Serializer\Encoder\XmlEncoder'
+
     app.fetcher:
         class:      AppBundle\Service\Fetcher
+        arguments: ['@app.encoder.xml', 'projects']
 
     app.cors_listener:
         class:      AppBundle\EventListener\CorsListener
