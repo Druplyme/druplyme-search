@@ -1,6 +1,16 @@
 version: "2"
 
 services:
+  mariadb:
+    image: wodby/drupal-mariadb
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+    volumes:
+      - ./docker-runtime/mariadb:/var/lib/mysql
+
   php:
     image: wodby/drupal-php:7.0 # Allowed: 7.0, 5.6.
     environment:
@@ -27,7 +37,7 @@ services:
   solr:
     image: solr:6.2-alpine
     volumes:
-      - ./docker-runtime/solr:/opt/solr/server/solr/mycores/projects
+#      - ./docker-runtime/solr:/opt/solr/server/solr/mycores/projects
       - ./docker-runtime/solr-init.sh:/docker-entrypoint-initdb.d/solr-init.sh
     entrypoint:
       - docker-entrypoint.sh
