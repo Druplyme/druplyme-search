@@ -10,6 +10,8 @@ services:
       MYSQL_PASSWORD: drupal
     volumes:
       - ./docker-runtime/mariadb:/var/lib/mysql
+#    ports:
+#      - "3306:3306"
 
   php:
     image: wodby/drupal-php:7.0 # Allowed: 7.0, 5.6.
