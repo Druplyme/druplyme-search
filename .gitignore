@@ -21,3 +21,4 @@ app_dev.php
 npm-debug.log
 composer.lock
 .idea
+.DS_Store
