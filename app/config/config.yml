@@ -15,12 +15,13 @@ framework:
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
+    form:
+        enabled: false
     csrf_protection: ~
     validation:      { enable_annotations: true }
     serializer:      { enabled: true, enable_annotations: true }
-    templating:
-        engines: ['twig']
+#    templating:
+#        engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
