@@ -2,10 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends Controller
@@ -16,12 +14,8 @@ class SearchController extends Controller
     public function indexAction(Request $request)
     {
         $projects = $this->get('app.search')->find($request->query);
+        $normalizedProjects = $this->get('serializer')->normalize($projects);
 
-        $result = array_map(function ($project) {
-            /** @var $project Project */
-            return $project->toArray();
-        }, $projects);
-
-        return new JsonResponse($result);
+        return $this->json($normalizedProjects);
     }
 }
