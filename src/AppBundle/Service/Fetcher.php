@@ -12,10 +12,10 @@ class Fetcher
 
     const PROJECTS_URL = 'https://updates.drupal.org/release-history/project-list/all';
 
-    public function __construct($encoder, $rooNodeName)
+    public function __construct($encoder, $rootNodeName)
     {
         $this->encoder = $encoder;
-        $this->encoder->setRootNodeName($rooNodeName);
+        $this->encoder->setRootNodeName($rootNodeName);
     }
 
     public function fetch()
