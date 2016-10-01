@@ -11,6 +11,9 @@ services:
         class:      AppBundle\Service\Search
         arguments:  ["@solr.client", "AppBundle\\Entity\\Project"]
 
+    app.fetcher:
+        class:      AppBundle\Service\Fetcher
+
     app.cors_listener:
         class:      AppBundle\EventListener\CorsListener
         tags:
