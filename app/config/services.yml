@@ -2,24 +2,39 @@
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
+    entity.project: 'AppBundle:Project'
 
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    app.search:
-        class:      AppBundle\Service\Search
-        arguments:  ["@solr.client", "AppBundle\\Entity\\Project"]
 
-    # XML Encoder
+    # Searcher.
+    app.search:
+        class: AppBundle\Service\Search
+        arguments: ['@solr.client', 'AppBundle\\Entity\\Project']
+
+    # XML Encoder.
     app.encoder.xml:
         class: 'Symfony\Component\Serializer\Encoder\XmlEncoder'
 
+    # Project repository.
+    app.project_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine', getRepository]
+        arguments: ['%entity.project%']
+
+    # Project fetcher.
     app.fetcher:
-        class:      AppBundle\Service\Fetcher
-        arguments: ['@app.encoder.xml', 'projects']
+        class: AppBundle\Service\Fetcher
+        arguments: ['@app.project_repository', '@app.encoder.xml', 'projects']
+
+    # Project indexer.
+    app.indexer:
+        class: AppBundle\Service\Indexer
+        arguments: ['@app.project_repository', '@app.fetcher']
 
     app.cors_listener:
-        class:      AppBundle\EventListener\CorsListener
+        class: AppBundle\EventListener\CorsListener
         tags:
            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
