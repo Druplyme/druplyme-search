@@ -3,6 +3,7 @@
 parameters:
 #    parameter_name: value
     entity.project: 'AppBundle:Project'
+    entity.project.class: 'AppBundle\Entity\Project'
 
 services:
 #    service_name:
@@ -12,7 +13,7 @@ services:
     # Searcher.
     app.search:
         class: AppBundle\Service\Search
-        arguments: ['@solr.client', 'AppBundle\\Entity\\Project']
+        arguments: ['@solr.client', '%entity.project.class%']
 
     # XML Encoder.
     app.encoder.xml:
