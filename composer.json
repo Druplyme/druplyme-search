@@ -30,7 +30,9 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "floriansemm/solr-bundle": "^1.5",
         "symfony/console": "^3.1",
-        "symfony/serializer": "^3.1"
+        "symfony/serializer": "^3.1",
+        "react/http": "^0.4.1",
+        "m6web/php-process-manager-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -15,26 +15,11 @@ services:
 
   php:
     image: fortis/stackd-php
-    environment:
-      PHP_SITE_NAME: dev
-      PHP_HOST_NAME: localhost:7000
-#      PHP_DOCROOT: web # Relative path inside the /var/www/html/ directory.
-      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
-      PHP_XDEBUG_ENABLED: 0
     volumes:
       - ./:/var/www/html
-
-  nginx:
-    image: fortis/stackd-nginx
-    environment:
-      NGINX_SERVER_NAME: localhost
-      NGINX_UPSTREAM_NAME: php
-      NGINX_DOCROOT: web
-      DRUPAL_VERSION: 8
-    volumes_from:
-      - php
+    command: php bin/console m6web:http-process --host php 7000
     ports:
-      - "8080:80"
+      - "8080:7000"
 
   solr:
     image: solr:6.2-alpine
