@@ -17,7 +17,7 @@ services:
     image: fortis/stackd-php
     volumes:
       - ./:/var/www/html
-    command: php bin/console m6web:http-process --host php 7000
+    command: sh -c "composer install && php bin/console m6web:http-process --host php 7000"
     ports:
       - "8080:7000"
 
