@@ -33,7 +33,7 @@ services:
     # Project indexer.
     app.indexer:
         class: AppBundle\Service\Indexer
-        arguments: ['@app.project_repository', '@app.fetcher']
+        arguments: ['@app.project_repository', '@app.fetcher', '@service_container']
 
     app.cors_listener:
         class: AppBundle\EventListener\CorsListener
